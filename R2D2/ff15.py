@@ -70,11 +70,11 @@ def fullTurn():
 
 
 def turnRight():
-    robot.turn(80)
+    robot.turn(85)
 
 
 def turnLeft():
-    robot.turn(-80)
+    robot.turn(-85)
 
 
 def straightleft():
@@ -83,23 +83,100 @@ def straightleft():
     robot.drive(DRIVE_SPEED, turn_rate)
     wait(10)
 
-
-def DockScan():
-    robot.straight(100)
-    robot.straight(-200)
-    robot.straight(100)
 def goToDock():
     robot.straight(-80)
     turnLeft()
-    wait(100)
     straightleft()
-    robot.straight(-2500)
+    robot.straight(-100)
+    straightleft()
+    robot.straight(-100)
+    straightleft()
+    robot.straight(-100)
+    straightleft()
+    robot.straight(-100)
+    straightleft()
+    robot.straight(-100)
+def dockScan():
+    robot.straight(150)
+    robot.straight(-300)
+    robot.straight(150)
+def topDockScans():
     turnLeft()
-    DockScan()
+    dockScan()
+    turnLeft()
+def firstTurn():
+    robot.straight(-70)
     turnRight()
-    count+= 1
+    wait(30)
+while True:
+    straightleft()
+    wait(30)
+    if countY==-1 and countX==0 and line_sensor.reflection() < 10:
+        firstTurn()
+        while countY==-1 and countX==0:
+            straightleft()
+            if line_sensor.reflection() < 10:
+                countY+=1
+    if countY==0 and countX==0 :
+        
+        robot.straight(-80)
+        turnLeft()
+        robot.straight(-400)
+        topDockScans()
+        countY+=1
+        b=False
+    if countY==1 and countX==1 and b==False:
+        straightleft()
+        if line_sensor.reflection() < 10:
+            countY-=1
+    if countY==0 and countX==1 and line_sensor.reflection() < 10:
+        straightleft()
+    if countY==0 and countX==1 and line_sensor.reflection() < 10:
+        fullTurn()
+        countY-=1
+        straightleft()
+    if  countY==-1 and countX==1 and line_sensor.reflection() < 10:
+        countY+=1
+        robot.straight(-70)
+        turnRight()
+        straightleft()
+        countX+=1
+    if countY==0 and countX==2 and line_sensor.reflection() < 10:
+        goToDock()
+        topDockScans()
+        countY+=1
 
 
+    
+
+"""
+    if countY==0 and countX==1 and line_sensor.reflection() < 15:
+        topDockScans()
+    if countY==1 and countX==1 and line_sensor.reflection() < 10:
+        countY-=1
+    if countY==0 and countX==1 and line_sensor.reflection() < 10:
+        robot.straight(-70)
+        straightleft()
+        countY-=1
+    if countY==-1 and countX==1 and line_sensor.reflection() < 10:
+        fullTurn()
+        straightleft()
+        countY+=1
+    if countY==0 and countX==1 and line_sensor.reflection() < 10:
+        turnRight()
+        straightleft()
+        countX+=1
+    if countY==0 and countX==2 and line_sensor.reflection() < 10:
+        topDockScans()
+    if countY==1 and countX==2 and line_sensor.reflection() < 10:
+        countY-=1
+        break
+    
+        
+    
+"""
+
+"""
 while True:
     straightleft()
     wait(30)
@@ -140,7 +217,7 @@ while True:
         break
 
 
-
+"""
             
 """"""
 """"
